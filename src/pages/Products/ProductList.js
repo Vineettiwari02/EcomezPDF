@@ -3,11 +3,13 @@ import { ProductCard } from '../../components'
 import { Filterbar } from './components/Filterbar'
 import { useTitle } from '../../hooks/useTitle'
 import { useLocation } from 'react-router-dom'
+import { useFilter } from '../../context'
 
 export const ProductList = () => {
   useTitle("Explore Our Ebooks");
+  const {products,initialProductList} = useFilter();
 
-  const [products,setProducts] = useState([]);
+  // const [products,setProducts] = useState([]);
   const search = useLocation().search;
   const searchTerm = new URLSearchParams(search).get("q");
   console.log(searchTerm)
@@ -17,7 +19,8 @@ export const ProductList = () => {
     async function fetchallProducts(){
        const response = await fetch(`http://localhost:8000/products?name_like=${searchTerm ? searchTerm : ""}`);
        const data = await response.json();
-       setProducts(data);
+      //  setProducts(data);
+       initialProductList(data)
     }
     fetchallProducts()
 
@@ -38,8 +41,8 @@ export const ProductList = () => {
           </div>    
 
           <div className="flex flex-wrap justify-center lg:flex-row">
-            {products.map((product)=>(
-              <ProductCard key={product.id} product={product}/>
+            {products.map((products)=>(
+              <ProductCard key={products.id} product={products}/>
             ))}
           
           </div>  
