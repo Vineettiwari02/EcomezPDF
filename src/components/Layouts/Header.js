@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import logo from "../../assets/Asset 1.svg"
 import { json } from 'react-router-dom';
 import { Search } from '../Sections/Search';
+import { DropdownLoggedOut } from '../elements/DropdownLoggedOut';
 
 export const Header = () => {
     const [darkMode,setDarkMode] = useState(json(localStorage.getItem("darkMode")) || true);
     const[searchSection,setSearchSection] =  useState(false);
+    const[dropDown,setDropwown] =  useState(false);
     useEffect(() =>{
         localStorage.setItem("darkMode", json.toString(darkMode))
         if(darkMode){
@@ -31,7 +33,8 @@ export const Header = () => {
                           <span className="text-white text-sm absolute -top-1 left-2.5 bg-rose-500 px-1 rounded-full ">0</span>
                       </span>                    
                       </a>
-                      <span className="bi bi-person-circle cursor-pointer text-2xl text-gray-700 dark:text-white"></span>
+                      <span onClick={() => setDropwown(!dropDown)} className="bi bi-person-circle cursor-pointer text-2xl text-gray-700 dark:text-white"></span>
+                  {dropDown && (<DropdownLoggedOut/>)}
                   </div>
               </div>
           </nav>
