@@ -25,7 +25,7 @@ export const ProductList = () => {
     fetchallProducts()
 
 
-  },[])
+  },[initialProductList,searchTerm])
 
   const[show,setShow] = useState(false)
   return (
