@@ -1,12 +1,14 @@
 import React from 'react'
 import { CartEmpty } from './components/CartEmpty'
-import { CartList } from './components/CartList'
+import { CartList } from './components/CartList';
+import { useCart } from '../../context';
 
 export const Cartpage = () => {
+  const { cartList } = useCart();
+
   return (
-    <main>    
-        <CartEmpty/> 
-        <CartList/>     
-    </main>
+    <main>       
+    { cartList.length ? <CartList /> : <CartEmpty /> }   
+  </main>
   )
 }
