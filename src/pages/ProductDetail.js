@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useTitle } from '../hooks/useTitle';
 import { Rating } from '../components';
 import { useParams } from 'react-router-dom';
+import { useCart } from '../context';
 
 
 export const ProductDetail = () => {
+  const { cartList, addToCart, removeFromCart } = useCart();
   const [products, setProducts] = useState([]);
+  const [inCart, setIsInCart] = useState(false);
   const {id} = useParams();
   // useTitle("ebooks");
   useTitle(products.name);
@@ -19,6 +22,14 @@ export const ProductDetail = () => {
 
      },[id]);
 
+     useEffect( () =>{
+      const productInCart = cartList.find(item => item.id === products.id);
+      if(productInCart){
+        setIsInCart(true)
+      }else{
+        setIsInCart(false)
+      }
+    },[cartList, products.id] )
 
   return (
     <main>
@@ -54,8 +65,9 @@ export const ProductDetail = () => {
               <span className="font-semibold text-blue-500 border bg-slate-100 rounded-lg px-3 py-1 mr-2">{products.size} MB</span>
             </p>
             <p className="my-3">
-              <button className={`inline-flex items-center py-2 px-5 text-lg font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800`}>Add To Cart <i className="ml-1 bi bi-plus-lg"></i></button>
-              {/* <button className={`inline-flex items-center py-2 px-5 text-lg font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800`}  disabled={ product.in_stock ? "" : "disabled" }>Remove Item <i className="ml-1 bi bi-trash3"></i></button> */}
+            {inCart ? (<button onClick={() => removeFromCart(products)} className={`inline-flex items-center py-2 px-5 text-lg font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800`}  disabled={ products.in_stock ? "" : "disabled" }>Remove Item <i className="ml-1 bi bi-trash3"></i></button>) : (<button onClick={() => addToCart(products)}  className={`inline-flex items-center py-2 px-5 text-lg font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800`}>Add To Cart <i className="ml-1 bi bi-plus-lg"></i></button>)}
+              
+              {/*  */}
             </p>
             <p className="text-lg text-gray-900 dark:text-slate-200">
               {products.long_description}
