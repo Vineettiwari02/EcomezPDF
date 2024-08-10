@@ -1,11 +1,11 @@
 import React from 'react';
 import { useNavigate,Link } from 'react-router-dom';
+import { logout } from '../../services';
 
 export const DropdownLoggedIn = ({setDropwown}) => {
     const navigate = useNavigate()
     function handelLogout(){
-        sessionStorage.removeItem("token");
-        sessionStorage.removeItem("cbid");
+       logout();
         setDropwown(false);
         navigate ("/");
 
