@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { DashboardCard } from './components/DashboardCard'
 import { DashboardEmpty } from './components/DashboardEmpty'
 import { getUserOrder } from '../../services'
+import { useTitle } from '../../hooks/useTitle'
 export const Dashboard = () => {
   const [orders, setOrders] = useState([]);
+  useTitle("Dashboard")
 useEffect(()=>{
 
   async function fetchOrders() {
