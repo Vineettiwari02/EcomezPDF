@@ -4,7 +4,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 export const Checkout = ({ setCheckout }) => {
     const { cartList, total, clearCart } = useCart();
-     const navigate = useNavigate();
+    const navigate = useNavigate();
     const [user, setUser] = useState({})
     const token = JSON.parse(sessionStorage.getItem("token"));
     const cbid = JSON.parse(sessionStorage.getItem("cbid"));
@@ -16,39 +16,35 @@ export const Checkout = ({ setCheckout }) => {
             });
             const data = await response.json();
             setUser(data);
-
         }
         getUsers()
     }, [])
-
     async function handelOrderSubmit(event) {
         event.preventDefault();
-        const order = {
-            cartList : cartList,
-            amout_paid :total,
-            quantity: cartList.length,
-            user:{
-                name: user.name,
-                email: user.email, 
-                // email: event.target.email.value,
-                id: user.id,
+        try {
+            const order = {
+                cartList: cartList,
+                amout_paid: total,
+                quantity: cartList.length,
+                user: {
+                    name: user.name,
+                    email: user.email,
+                    // email: event.target.email.value,
+                    id: user.id,
+                }
             }
+            const response = await fetch(`http://localhost:8000/660/orders`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+                body: JSON.stringify(order)
+            })
+            const data = await response.json();
+            clearCart()
+            navigate("/order-summary", { state: { data: data, status: true } });
+        } catch (error) {
+            navigate("/order-summary", { state: { status: false } });
         }
-
-        const response = await fetch(`http://localhost:8000/660/orders`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-            body: JSON.stringify(order)
-        })
-
-         const data = await response.json();
-         clearCart()
-         navigate("/");
-
-
     }
-
-
     return (
         <section>
             <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50"></div>
