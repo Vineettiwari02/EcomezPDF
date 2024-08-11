@@ -237,37 +237,10 @@
       "best_seller": true
     }
   ],
-  "orders": [],
+  "orders": [
+
+  ],
   "users": [
-    {
-      "email": "olaf@gmail.com",
-      "password": "$2a$10$99tHFQpRCeJHrz3TOeRbSu8oGxkdInNFrsvkYVVLMqcoaogtLpbAK",
-      "name": "Vineet Tiwari",
-      "id": 1
-    },
-    {
-      "email": "olafnwew@gmail.com",
-      "password": "$2a$10$KvGowF1tOEk7njlREAxhVeMlxxnSN0WUEiBSho1KUow5DCGu/8y3C",
-      "name": "Vikcy",
-      "id": 2
-    },
-    {
-      "email": "ram@gmail.com",
-      "password": "$2a$10$D.7ZZc/GsyY4mAB9PgTKL.kSHLwMs5DKJsW81q7KtiNvgUxXF9zeS",
-      "name": "Ram",
-      "id": 3
-    },
-    {
-      "email": "rocky@gmail.com",
-      "password": "$2a$10$NZzylOVLhoa7jakxBV2KouzuI4TIgKpEd0oCUjb5J.HqsH0/fqHRi",
-      "name": "rocky",
-      "id": 4
-    },
-    {
-      "email": "roku@gmail.com",
-      "password": "$2a$10$XdM9ttMGWSqsAiyE1GdHMuC1N1sCyJEAv1X5ds2omjvVN7DTM6YHG",
-      "name": "Roku",
-      "id": 5
-    }
+
   ]
 }
