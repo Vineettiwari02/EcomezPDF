@@ -1,6 +1,5 @@
 import React from 'react'
 import { useFilter } from '../../../context'
-import { type } from '@testing-library/user-event/dist/type'
 
 
 export const Filterbar = ({ setShow }) => {
