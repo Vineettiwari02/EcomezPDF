@@ -31,7 +31,7 @@ export const ProductList = () => {
     fetchallProducts()
 
 
-  },[initialProductList,searchTerm])
+  },[initialProductList,searchTerm])// eslint-disable-line
 
   const[show,setShow] = useState(false)
   return (
